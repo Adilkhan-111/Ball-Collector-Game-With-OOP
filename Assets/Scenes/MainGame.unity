@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _index: 1
-  rotationSpeed: 3
+  rotationSpeed: 1.5
   minRotZ: -85
   maxRotZ: 1
 --- !u!1 &148612953
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _index: 2
-  rotationSpeed: 3
+  rotationSpeed: 1.5
   minRotZ: 1
   maxRotZ: 85
 --- !u!1 &1165481802
