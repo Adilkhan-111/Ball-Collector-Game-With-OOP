@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 
-public class SpawnManager : AbstractBall
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SpawnManager : AbstractBall // INHERITANCE
 {
     //public AbstractBall AbstractBallScript = null;
     
@@ -11,34 +10,48 @@ public class SpawnManager : AbstractBall
 
     public GameObject greenBall;
     public GameObject redBall;
+
     
-    
+    public bool gameover;
     private void Awake()
     {
         Health = 3;
         InvokeRepeating("SpawnBall", 1, 0.7f);
+        MainManager.Instance.LoadData();
     }
     private void Update()
     {
         
+        if (Health <= 0)
+        {
+            gameover = true;
+        }
+        Debug.Log(score);
+        
     }
     public void SpawnBall()
     {
-        int randomNum = Random.Range(0, 3);
-        DestroyOutOfBound();
-        switch (randomNum)
+        
+        if (!gameover)
         {
-            case 0:
-                Instantiate(redBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
-                return;
-            case 1:
-                Instantiate(greenBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
-                return;
-            case 2:
-                Instantiate(greenBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
-                return;
+            int randomNum = Random.Range(0, 3);
+            DestroyOutOfBound();
+            increaseScore();
+            switch (randomNum)
+            {
+                case 0:
+                    Instantiate(redBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
+                    return;
+                case 1:
+                    Instantiate(greenBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
+                    return;
+                case 2:
+                    Instantiate(greenBall, new Vector3(randomPosX(), 13, 0.5f), Quaternion.identity);
+                    return;
 
+            }
         }
+        
         
         
 
@@ -68,13 +81,22 @@ public class SpawnManager : AbstractBall
             }
         }
     }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     protected override void takeHP()
     {
           
     }
     protected override void increaseScore()
     {
-        
+        if(score > MainManager.Instance.HighScore)
+        {
+            
+            MainManager.Instance.HighScore = score;
+            MainManager.Instance.SaveData();
+        }
     }
     
     // Start is called before the first frame update

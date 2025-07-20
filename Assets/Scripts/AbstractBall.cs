@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public abstract class AbstractBall : MonoBehaviour
+public abstract class AbstractBall : MonoBehaviour //ABSTRACTION
 {
-    private int _health; // приватное поле
+    private int _health; 
 
-    public int Health
+    public int Health // INCAPSULATION
     {
         get
         {
@@ -14,7 +13,7 @@ public abstract class AbstractBall : MonoBehaviour
         }
         set
         {
-            if (value < 0 || value > 3) // исправлено условие
+            if (value < 0 || value > 3) 
             {
                 Debug.Log("You can`t set that");
             }
@@ -23,6 +22,6 @@ public abstract class AbstractBall : MonoBehaviour
         }
     }
 
-    protected abstract void takeHP();
+    protected abstract void takeHP(); // POLYMORPHYSM
     protected abstract void increaseScore(); 
 }

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class TriggerRelay : AbstractBall
+public class TriggerRelay : AbstractBall //INHERITANCE
 {
     public SpawnManager spawnManagerScript;
     protected override void increaseScore()
@@ -17,10 +16,12 @@ public class TriggerRelay : AbstractBall
     {
         if (other.CompareTag("Green"))
         {
+            
             increaseScore();
         }
         else if (other.CompareTag("Red"))
         {
+            Debug.Log("Blyasuka");
             takeHP();
         }
     }

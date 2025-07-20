@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using TMPro;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -8,6 +8,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float minRotZ = -1f;
     [SerializeField] private float maxRotZ = -85f;
+    public TextMeshProUGUI guideText;
+    
+
 
     private bool isReturning = false;
 
@@ -15,6 +18,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            if (guideText != null)
+            {
+                guideText.gameObject.SetActive(false);
+            }
+            
             isReturning = false;
             CloseHolders();
         }
